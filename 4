@@ -1,0 +1,29 @@
+import numpy as np
+from math import *
+import random
+
+
+
+
+class Matrix:
+    arr=[]
+    def create(self,n,m):
+        random.seed(100)
+        for i in range(n):
+            self.arr.append([random.randint(-10,10) for x in range(m)])
+        return np.array(self.arr)
+    def vector(self):
+        return np.argmax(np.array(self.arr),axis=1)
+
+    def mean_log(self):
+        x=np.array(self.arr)[np.array(self.arr)<0]
+        x=x[np.cos(abs(x))<0.6]
+        sum1=sum(list(map(lambda x:np.log(abs(x)),x)))
+        return sum1/len(x)
+n=int(input("Количество строк : "))
+m=int(input('Количество столбцов : '))
+
+x=Matrix()
+print(x.create(n,m))
+print(x.vector())
+print(x.mean_log())
